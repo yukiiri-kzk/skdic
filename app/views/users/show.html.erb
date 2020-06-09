@@ -1,15 +1,16 @@
 <h2 class="mb-5">本人情報</h2>
 
-<div class="">
-  <p class="h5">ユーザー名</p>
-  <div class="card col-sm-4 mt-0 mb-3">
-    <%= @user.name %>
-  </div>
-</div>
-
-<div class="">
-  <p class="h5">メールアドレス</p>
-  <div class="card col-sm-4 mt-0 mb-3">
-    <%= @user.email %>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    
+    <p class="h5">ユーザー名</p>
+    <div class="card mb-3">
+      <p class="h5"><%= @user.name %></p>
+    </div>
+    
+    <p class="h5">メールアドレス</p>
+    <div class="card mb-3">
+      <p class="h5"><%= @user.email %></p>
+    </div>
   </div>
 </div>
