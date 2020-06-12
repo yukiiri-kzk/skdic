@@ -41,9 +41,29 @@ class UsersController < ApplicationController
   def destroy
   end
   
+  def profile_show
+    @user = User.find(params[:id])
+  end
+  
+  def profile_edit
+    @user = User.find(params[:id])
+  end
+  
+  def profile_update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = 'プロフィールを変更しました。'
+      redirect_to profile_show_user_url(@user)
+    else
+      flash.now[:danger] = 'プロフィールは変更されませんでした。'
+      render :profile_edit
+    end
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :self_introduction)
   end
 end
