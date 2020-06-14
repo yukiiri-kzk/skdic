@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show]
-  
+  before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
   
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -23,11 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     
     if @user.update(user_params)
       flash[:success] = '本人情報が変更されました。'
@@ -39,19 +36,20 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    
+    flash[:success] = '退会しました。'
+    redirect_to root_url
   end
   
   def profile_show
-    @user = User.find(params[:id])
   end
   
   def profile_edit
-    @user = User.find(params[:id])
   end
   
   def profile_update
-    @user = User.find(params[:id])
-    
+
     if @user.update(user_params)
       flash[:success] = 'プロフィールを変更しました。'
       redirect_to profile_show_user_url(@user)
@@ -62,6 +60,10 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :self_introduction)

@@ -14,7 +14,9 @@
       </div>
     </div>
     
-    <%= link_to "編集する", profile_edit_user_path(@user), class: "offset-sm-5 my-3 btn btn-outline-primary rounded-pill" %>
+    <% if current_user.id == @user.id %>    
+      <%= link_to "編集する", profile_edit_user_path(@user), class: "offset-sm-5 my-3 btn btn-outline-primary rounded-pill" %>
+    <% end %>
     
   </div>
 </div>

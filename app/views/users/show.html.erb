@@ -1,24 +1,24 @@
+<% if current_user.id == @user.id %>
 <h2 class="mb-5">本人情報</h2>
-
+  
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-    
+      
     <p class="h5">ユーザー名</p>
     <div class="card mb-3">
       <p class="h5"><%= @user.name %></p>
     </div>
-    
+      
     <p class="h5">メールアドレス</p>
     <div class="card mb-3">
       <p class="h5"><%= @user.email %></p>
     </div>
   </div>
 </div>
-
+  
 <%= link_to "編集する", edit_user_path(@user), class: "offset-sm-5 mt-3 btn btn-outline-primary rounded-pill" %>
-
+  
 <h2 class="my-5">退会</h2>
-
-<%= link_to ("#") do %>
-  <div class="offset-sm-5 mt-3 btn btn-danger rounded-pill">退会する</div>
+  
+<%= link_to "退会する", root_path, method: :delete, data: { confirm: '本当に退会してよろしいですか？' }, class: "offset-sm-5 mt-3 btn btn-danger rounded-pill" %>
 <% end %>

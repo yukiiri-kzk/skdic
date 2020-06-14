@@ -1,5 +1,6 @@
 <h2 class="mb-5">マイプロフィール編集</h2>
 
+<% if current_user.id == @user.id %>
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
     <%= form_with model: @user, url: profile_update_user_path, local: true do |f| %>
@@ -26,3 +27,4 @@
     
   </div>
 </div>
+<% end %>
