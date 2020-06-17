@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_040626) do
+ActiveRecord::Schema.define(version: 2020_06_16_083652) do
+
+  create_table "chatrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "exhibitor_id"
+    t.bigint "wanter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.index ["exhibitor_id", "wanter_id"], name: "index_chatrooms_on_exhibitor_id_and_wanter_id", unique: true
+    t.index ["exhibitor_id"], name: "index_chatrooms_on_exhibitor_id"
+    t.index ["item_id"], name: "index_chatrooms_on_item_id"
+    t.index ["wanter_id"], name: "index_chatrooms_on_wanter_id"
+  end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,6 +32,16 @@ ActiveRecord::Schema.define(version: 2020_06_11_040626) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "chatroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -32,5 +54,10 @@ ActiveRecord::Schema.define(version: 2020_06_11_040626) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "chatrooms", "items"
+  add_foreign_key "chatrooms", "users", column: "exhibitor_id"
+  add_foreign_key "chatrooms", "users", column: "wanter_id"
   add_foreign_key "items", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
 end

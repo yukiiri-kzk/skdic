@@ -9,4 +9,10 @@ class User < ApplicationRecord
   mount_uploader :image, ProfileImageUploader
   
   has_many :items, dependent: :destroy
+  has_many :chatrooms, dependent: :destroy
+  has_many :takers, through: :chatrooms, source: :wanter
+  has_many :reverses_of_chatrooms, class_name: 'Chatroom', foreign_key: 'wanter_id'
+  has_many :givers, through: :reverses_of_chatrooms, source: :exhibitor
+  has_many :messages, dependent: :destroy
+  has_many :talkrooms, through: :messages, source: :chatroom
 end
