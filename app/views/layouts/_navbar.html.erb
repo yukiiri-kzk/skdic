@@ -12,6 +12,8 @@
             <li class="nav-item"><%= link_to "マイプロフィール", profile_show_user_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "アイテム登録", new_item_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "アイテム一覧", items_path(current_user), class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "出品ルーム", chatrooms_path(current_user), class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "受取ルーム", other_chatrooms_path(current_user), class: 'nav-link' %></li>
           </ul>
         </div>
         

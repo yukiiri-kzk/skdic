@@ -1,4 +1,3 @@
-<% if current_user.id == @user.id %>
 <h2 class="mb-5">本人情報</h2>
   
 <div class="row">
@@ -21,4 +20,3 @@
 <h2 class="my-5">退会</h2>
   
 <%= link_to "退会する", root_path, method: :delete, data: { confirm: '本当に退会してよろしいですか？' }, class: "offset-sm-5 mt-3 btn btn-danger rounded-pill" %>
-<% end %>

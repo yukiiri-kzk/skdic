@@ -10,9 +10,11 @@ class User < ApplicationRecord
   
   has_many :items, dependent: :destroy
   has_many :chatrooms, dependent: :destroy
-  has_many :takers, through: :chatrooms, source: :wanter
-  has_many :reverses_of_chatrooms, class_name: 'Chatroom', foreign_key: 'wanter_id'
-  has_many :givers, through: :reverses_of_chatrooms, source: :exhibitor
+  has_many :wanters, through: :chatrooms
+  has_many :reverses_of_chatroom, class_name: 'Chatroom', foreign_key: 'wanter_id', dependent: :destroy
+  has_many :exhibitors, through: :reverses_of_chatroom
   has_many :messages, dependent: :destroy
   has_many :talkrooms, through: :messages, source: :chatroom
+  has_many :wanter_items, dependent: :destroy
+  has_many :want_items, through: :wanter_items, source: :item
 end

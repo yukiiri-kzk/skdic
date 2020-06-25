@@ -1,2 +1,18 @@
-<h1>Toppages#index</h1>
-<p>Find me in app/views/toppages/index.html.erb</p>
+<% @items.each do |item| %>
+  <div>
+    <%= image_tag item.image.url, size: "100x100" if item.image? %>
+    <%= link_to item.name, item_path(item.user) %>
+    <%= link_to item.user.name, profile_show_user_path(item.user) %>
+    <%= simple_format(item.explanation) %>
+
+      <% unless item.user.id == @current_user %>
+        <%= form_with model: Chatroom.new, local: true do |f| %>
+          <%= f.hidden_field :exhibitor_id, value: item.user.id %>
+          <%= f.hidden_field :wanter_id, value: @current_user %>
+          <%= f.hidden_field :item_id, value: item.id %>
+          <%= f.submit 'ルームを作成する', class: 'mb-3 btn btn-primary rounded-pill'%>
+        <% end %>
+      <% end %>
+  </div>
+<% end %>
+<%= paginate @items %>

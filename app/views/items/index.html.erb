@@ -7,3 +7,4 @@
       <%= link_to item.user.name, user_path(item.user) %>
     </div>
   <% end %>
+  <%= paginate @items %>

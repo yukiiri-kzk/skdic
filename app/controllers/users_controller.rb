@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
+  before_action :correct_user, only: [:show, :edit, :profile_edit]
+  
   
   def show
   end
@@ -60,6 +62,13 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user.id == @user.id
+      redirect_to root_url
+    end
+  end
   
   def set_user
     @user = User.find(params[:id])
