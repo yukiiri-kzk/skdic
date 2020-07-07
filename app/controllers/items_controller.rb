@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show]
+  before_action :correct_item, only: [:edit, :update]
   
   
   def index
@@ -8,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
@@ -27,11 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = current_user.items.find_by(id: params[:id])
   end
 
   def update
-    @item = current_user.items.find_by(id: params[:id])
     if @item.update(item_params)
       flash[:success] = 'アイテム情報が変更されました。'
       redirect_to @item
@@ -50,8 +48,16 @@ class ItemsController < ApplicationController
     end
   end
   
+  def set_item
+    if Item.exists?(id: params[:id])
+      @item = Item.find(params[:id])
+    else
+      redirect_to root_url
+    end
+  end
+  
   def item_params
-    params.require(:item).permit(:name, :explanation, :image)
+    params.require(:item).permit(:name, :explanation, :image, :category_id, :area_id)
   end
   
 end

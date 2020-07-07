@@ -1,5 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :require_user_logged_in
+  before_action :set_chatroom, only: [:show]
   before_action :correct_chatroom, only: [:show]
   
   def index
@@ -7,7 +8,6 @@ class ChatroomsController < ApplicationController
   end
   
   def show
-    @chatroom = Chatroom.find(params[:id])
     @message = current_user.messages.build
     @messages = @chatroom.messages.order(id: :desc)
   end
@@ -26,8 +26,15 @@ class ChatroomsController < ApplicationController
   private
   
   def correct_chatroom
-    @chatroom = Chatroom.find(params[:id])
     unless current_user.id == @chatroom.exhibitor_id || current_user.id == @chatroom.wanter_id
+      redirect_to root_url
+    end
+  end
+  
+  def set_chatroom
+    if Chatroom.exists?(id: params[:id])
+      @chatroom = Chatroom.find(params[:id])
+    else
       redirect_to root_url
     end
   end

@@ -5,18 +5,27 @@
       
     <p class="h5">ユーザー名</p>
     <div class="card mb-3">
-      <p class="h5"><%= @user.name %></p>
+      <div class="card-body p-1">
+        <p class="h5"><%= @user.name %></p>
+      </div>
     </div>
       
     <p class="h5">メールアドレス</p>
     <div class="card mb-3">
-      <p class="h5"><%= @user.email %></p>
+      <div class="card-body p-1">
+        <p class="h5"><%= @user.email %></p>
+      </div>
     </div>
-  </div>
+  
+    <%= link_to "編集する", edit_user_path(@user), class: "my-3 offset-sm-5 btn btn-outline-primary rounded-pill" %>
+   </div>
 </div>
   
-<%= link_to "編集する", edit_user_path(@user), class: "offset-sm-5 mt-3 btn btn-outline-primary rounded-pill" %>
-  
 <h2 class="my-5">退会</h2>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">  
   
-<%= link_to "退会する", root_path, method: :delete, data: { confirm: '本当に退会してよろしいですか？' }, class: "offset-sm-5 mt-3 btn btn-danger rounded-pill" %>
+    <%= link_to "退会する", root_path, method: :delete, data: { confirm: '本当に退会してよろしいですか？' }, class: "offset-sm-5 my-3 btn btn-danger rounded-pill" %>
+  </div>
+</div>

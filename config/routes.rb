@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   
   resources :chatrooms, only: [:index, :show, :create]
   resources :other_chatrooms, only: [:index]
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

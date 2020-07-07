@@ -15,6 +15,4 @@ class User < ApplicationRecord
   has_many :exhibitors, through: :reverses_of_chatroom
   has_many :messages, dependent: :destroy
   has_many :talkrooms, through: :messages, source: :chatroom
-  has_many :wanter_items, dependent: :destroy
-  has_many :want_items, through: :wanter_items, source: :item
 end

@@ -71,7 +71,11 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    @user = User.find(params[:id])
+    if User.exists?(id: params[:id])
+      @user = User.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
   
   def user_params

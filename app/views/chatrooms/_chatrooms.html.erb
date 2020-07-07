@@ -1,0 +1,22 @@
+<% chatrooms.each do |chatroom| %>
+  <div class="row">
+    <div class="col-sm-12 border pl-0">
+      
+      <%= image_tag chatroom.item.image.url, size: "100x100" if chatroom.item.image? %>
+      <div class="col-sm-3 d-inline-block align-top mt-3">
+        <p><%= chatroom.item.name %></p>
+        <%= link_to 'このアイテムの詳細を見る', item_path(chatroom.item) %>
+      </div>
+      <div class="col-sm-2 d-inline-block align-top mt-3">
+        <p>出品者：<%= link_to chatroom.exhibitor.name, profile_show_user_path(chatroom.exhibitor_id) %></p>
+        <p>受取人：<%= link_to chatroom.wanter.name, profile_show_user_path(chatroom.wanter_id) %></p>
+      </div>
+      <div class='col-sm-2 d-inline-block'>
+        <div class="far fa-comment-dots"></div>
+        <%= link_to '会話をする', chatroom_path(chatroom.id) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+ 
+ <%= paginate chatrooms %>
