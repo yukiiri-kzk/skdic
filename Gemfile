@@ -66,3 +66,5 @@ gem 'kaminari'
 gem 'carrierwave'
 
 gem 'pry-byebug', group: :development
+
+gem "rack", ">= 2.2.3"
