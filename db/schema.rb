@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_010941) do
+ActiveRecord::Schema.define(version: 2020_07_08_045825) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_010941) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "area_id"
+    t.string "done"
     t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"

@@ -1,7 +1,7 @@
 class ToppagesController < ApplicationController
   
   def index
-    @items = Item.all.order(id: :desc).page(params[:page]).per(10)
+    @items = Item.all.order(id: :desc).page(params[:page]).per(12)
     @current_user = current_user&.id
     
     if params[:name].present?

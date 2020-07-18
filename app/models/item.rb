@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
   validates :name, presence: true, length: {maximum: 255}
-  validates :explanation, presence: true, length: {maximum: 135}
+  validates :explanation, presence: true, length: {maximum: 255}
   mount_uploader :image, ItemImageUploader
   validates :image, presence: true
   validates :category_id, presence: true
   validates :area_id, presence: true
-  
+
   belongs_to :user
   belongs_to :category
   belongs_to :area

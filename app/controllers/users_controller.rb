@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :profile_show, :profile_edit, :profile_update]
-  before_action :correct_user, only: [:show, :edit, :profile_edit]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy, :profile_edit, :profile_update]
   
   
   def show
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      log_in(@user)
       flash[:success] = 'ユーザーを登録しました。'
       redirect_to root_url
     else

@@ -1,50 +1,55 @@
-<h2 class="mb-5">アイテム情報</h2>
+<h2 class="my-5">アイテム情報</h2>
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
     
-    <p class="h5">出品画像</p>
-    <div class="mb-3 d-flex justify-content-center">
-      <%= image_tag @item.image.url, size: "250x250" if @item.image? %>
-    </div>
-    
-    <p class="h5">アイテム名</p>
-    <div class="card mb-3">
-      <div class="card-body p-1">
-        <p class="h5"><%= @item.name %></p>
-      </div>
-    </div>
-    
-    <p class="h5">出品者</p>
-    <div class="card mb-3">
-      <div class="card-body p-1">
-        <p class="h5"><%= link_to @item.user.name, profile_show_user_path(@item.user) %></p>
-      </div>
-    </div>
-    
-    <p class="h5">カテゴリー</p>
-    <div class="card mb-3">
-      <div class="card-body p-1">
-        <p class="h5"><%= @item.category.name %></p>
-      </div>
-    </div>
-    
-    <p class="h5">地域</p>
-    <div class="card mb-3">
-      <div class="card-body p-1">
-        <p class="h5"><%= @item.area.name %></p>
-      </div>
-    </div>
-    
-    <p class="h5 mt-3">アイテム説明</p>
-    <div class="card mb-3" style="height: 15rem;">
-      <div class="card-body">
-        <%= simple_format(@item.explanation) %>
-      </div>
-    </div>
+    <table class="table table-bordered">
+      <thead>
+        <div class="d-flex justify-content-center border p-3"><%= image_tag @item.image.url, size: "250x250" if @item.image? %></div>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-nowrap">アイテム名</th>
+          <td>
+            <%= @item.name %>
+            <div>
+              <%= link_to 'このアイテムの詳細を見る', item_path(@item) %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">出品者</th>
+          <td><%= link_to @item.user.name, profile_show_user_path(@item.user) %></td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">カテゴリー</th>
+          <td><%= @item.category.name %></td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">キャンパス</th>
+          <td><%= @item.area.name %></td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">アイテム説明</th>
+          <td>
+            <%= simple_format(@item.explanation) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     
     <% if current_user == @item.user %>
-      <%= link_to "編集する", edit_item_path(@item), class: "offset-sm-5 mt-4 mb-3 btn btn-outline-primary rounded-pill" %>
+    <div class="d-flex justify-content-center my-4">
+      <%= link_to "編集する", edit_item_path(@item), class: "mx-2 btn btn-outline-primary rounded-pill" %>
+      
+      <% if @item.done == nil %>
+        <%= button_to '取引済みにする', completed_item_path(@item), class: "mx-2 btn btn-outline-danger rounded-pill" %>
+      <% else %>
+        <%= button_to '取引済みを解除', incomplete_item_path(@item), class: "mx-2 btn btn-outline-danger rounded-pill" %>
+      <% end %>
+      
+      <%= link_to '削除する', @item, method: :delete, data: { confirm: '本当にこのアイテムを削除してよろしいですか？' }, class: "btn btn-danger rounded-pill" %>
+    </div>
     <% end %>
   </div>
 </div>

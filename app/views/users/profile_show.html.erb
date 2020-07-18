@@ -1,12 +1,12 @@
-<h2 class="mb-5">マイプロフィール</h2>
+<h2 class="my-5">マイプロフィール</h2>
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
     <div class="d-flex justify-content-center">
       <%  if @user.image? %>
-        <%= image_tag @user.image.url, size: "250x250" %>
+        <%= image_tag @user.image.url, class: "rounded-circle", size: "250x250" %>
       <% else%>
-        <%= image_tag "default.png", size: "250x250" %>
+        <%= image_tag "default.png", class: "rounded-circle", size: "250x250" %>
       <% end %>
     </div>
     <p class="h3 mt-3 mb-5 text-center"><%= @user.name %></p>

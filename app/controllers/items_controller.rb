@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :require_user_logged_in
   before_action :set_item, only: [:show]
-  before_action :correct_item, only: [:edit, :update]
+  before_action :correct_item, only: [:edit, :update, :completed, :incomplete, :destroy]
   
   
   def index
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
       flash[:success] = 'アイテムを登録しました。'
       redirect_to @item
     else
-      flash.now[:danger] = 'アイテムの投稿に登録しました。'
+      flash.now[:danger] = 'アイテムの投稿に失敗しました。'
       render :new
     end
   end
@@ -37,6 +37,26 @@ class ItemsController < ApplicationController
       flash.now[:danger] = 'アイテム情報は変更されませんでした。'
       render :edit
     end
+  end
+  
+  def destroy
+    @item.destroy
+    flash[:success] = 'アイテムを削除しました。'
+    redirect_to items_url
+  end
+  
+  def completed
+    @item = Item.find(params[:id])
+    @item.update(done: '取引済み')
+    flash[:success] = 'アイテムを取引済みにしました。'
+    redirect_to @item
+  end
+  
+  def incomplete
+    @item = Item.find(params[:id])
+    @item.update(done: nil)
+    flash[:success] = 'アイテムの取引済みを解除しました。'
+    redirect_to @item
   end
   
   private

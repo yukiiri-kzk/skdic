@@ -6,11 +6,12 @@
     <%= form_with(model: @item, local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
       
-      <div class="d-flex justify-content-center">
-        <%= image_tag @item.image.url, size: "250x250" if @item.image? %>
-      </div>
-      <div class="d-flex justify-content-center">
-        <%= f.file_field :image %>
+      <div class="form-group">
+        <%= f.label :image, '出品画像' %>
+        <div class="text-center mb-2">
+          <%= image_tag @item.image.url, class: "mb-2", size: "250x250" if @item.image? %>
+          <%= f.file_field :image %>
+        </div>
       </div>
       
       <div class="form-group">
@@ -24,12 +25,12 @@
       </div>
       
       <div class="form-group">
-        <%= f.label :area_id, '地域' %>
+        <%= f.label :area_id, 'キャンパス' %>
         <%= f.select :area_id, Area.all.map{|area| [area.name, area.id]}, { include_blank: '選択してください'}, { class: "form-control", required: true} %>
       </div>
       
       <div class="form-group">
-        <%= f.label :explanation, 'アイテム説明（135文字以内）' %>
+        <%= f.label :explanation, 'アイテム説明' %>
         <%= f.text_area :explanation, class: 'form-control', size: "100x10" %>
       </div>
       

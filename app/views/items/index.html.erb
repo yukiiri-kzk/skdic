@@ -1,15 +1,37 @@
-<h2>出品アイテム一覧</h2>
+<h2 class="my-5">出品アイテム一覧</h2>
 
-<% @items.each do |item| %>
+<div class="container">
   <div class="row">
-    <div class="col-sm-12 border pl-0">
+    <div class="col">
       
-      <%= image_tag item.image.url, size: "100x100" if item.image? %>
-      <div class="col-sm-2 d-inline-block">
-        <p><%= item.name %></p>
-      </div>
-      <%= link_to "このアイテムの詳細を見る", item_path(item) %>
+      <% @items.each do |item| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+          
+            <div class="d-flex align-items-center">
+              <div><%= image_tag item.image.url, size: "100x100" if item.image? %></div>
+            
+              <div class="col-2 ml-3">
+                <p class="text-truncate"><%= item.name %></p>
+                <div><%= link_to "詳細を見る", item_path(item) %></div>
+              </div>
+            
+              <div class="mr-auto"></div>
+            
+              <% unless item.done == nil %>
+                <div class="text-nowrap px-1 rounded border border-danger text-danger">
+                  <%= item.done %>
+                </div>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+      
+      <%= paginate @items %>
+      
     </div>
   </div>
-<% end %>
-  <%= paginate @items %>
+</div>
+
+

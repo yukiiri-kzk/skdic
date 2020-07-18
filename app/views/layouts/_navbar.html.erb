@@ -1,12 +1,12 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="/">SKDIC</a>
+    <a class="h3 navbar-brand" href="/">SKDIC</a>
       <% if logged_in? %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsupportedcontent">
           <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse d-flex justify-content-end"  id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsupportedcontent">
           <ul class="navbar-nav">
             <li class="nav-item"><%= link_to "ユーザー", user_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "マイプロフィール", profile_show_user_path(current_user), class: 'nav-link' %></li>
@@ -14,16 +14,16 @@
             <li class="nav-item"><%= link_to "出品アイテム", items_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "出品ルーム", chatrooms_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "受取ルーム", other_chatrooms_path(current_user), class: 'nav-link' %></li>
-            <li><%= link_to "ログアウト", logout_path(current_user), method: :delete, class: "ml-5 btn btn-outline-primary" %></li>
+            <li><%= link_to "ログアウト", logout_path(current_user), method: :delete, class: "ml-sm-5 btn btn-outline-primary" %></li>
           </ul>
         </div>
     
       <% else %>
         <div class="mr-auto"></div>
-    
         <div>
           <a href="<%= signup_path(@user)%>" class="btn btn-danger mx-2 py-0">新規登録</a>
           <a href="<%= login_path(@user) %>" class="btn btn-outline-primary py-0">ログイン</a>
         </div>
       <% end %>
+  </nav>
 </header>
