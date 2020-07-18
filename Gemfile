@@ -68,3 +68,7 @@ gem 'carrierwave'
 gem 'pry-byebug', group: :development
 
 gem "rack", ">= 2.2.3"
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end

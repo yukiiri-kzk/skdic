@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: skdic_production
   username: skdic
   password: <%= ENV['SKDIC_DATABASE_PASSWORD'] %>
