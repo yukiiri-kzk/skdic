@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-  validates :name, presence: true, length: {maximum: 255}
-  validates :explanation, presence: true, length: {maximum: 255}
+  validates :name, presence: true, length: {maximum: 40}
+  validates :explanation, presence: true, length: {maximum: 300}
   mount_uploader :image, ItemImageUploader
   validates :image, presence: true
   validates :category_id, presence: true

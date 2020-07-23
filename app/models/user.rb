@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :email, presence: true, length: { maximum: 40 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6, maximum: 15 }
   validates :self_introduction, allow_blank: true, length: { maximum: 300 }
   has_secure_password
   mount_uploader :image, ProfileImageUploader
