@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_045825) do
+ActiveRecord::Schema.define(version: 2020_07_28_001210) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_045825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "item_id"
-    t.index ["exhibitor_id", "wanter_id"], name: "index_chatrooms_on_exhibitor_id_and_wanter_id", unique: true
     t.index ["exhibitor_id"], name: "index_chatrooms_on_exhibitor_id"
     t.index ["item_id"], name: "index_chatrooms_on_item_id"
     t.index ["wanter_id"], name: "index_chatrooms_on_wanter_id"

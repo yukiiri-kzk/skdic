@@ -10,22 +10,22 @@
       
       <div class="form-group">
         <%= f.label :name, 'ユーザー名' %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, placeholder: "20文字以内", class: 'form-control' %>
       </div>
 
       <div class="form-group">
         <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.email_field :email, placeholder: "40文字以内", class: 'form-control' %>
       </div>
 
       <div class="form-group">
         <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.password_field :password, placeholder: "7文字以上", class: 'form-control' %>
       </div>
 
       <div class="form-group">
         <%= f.label :password_confirmation, 'パスワード確認' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.password_field :password_confirmation, placeholder: "パスワードを再入力", class: 'form-control' %>
       </div>
       
       <div class="d-flex justify-content-center">

@@ -16,7 +16,7 @@
       
       <div class="form-group">
         <%= f.label :name, 'アイテム名' %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, placeholder: "40文字以内", class: 'form-control' %>
       </div>
       
       <div class="form-group">
@@ -31,7 +31,7 @@
       
       <div class="form-group">
         <%= f.label :explanation, 'アイテム説明' %>
-        <%= f.text_area :explanation, class: 'form-control', size: "100x10" %>
+        <%= f.text_area :explanation, placeholder: "300文字以内", class: 'form-control', size: "100x10" %>
       </div>
       
       <div class="d-flex justify-content-center">

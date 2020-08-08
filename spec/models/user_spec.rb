@@ -75,47 +75,17 @@ RSpec.describe User, type: :model do
       end
     end
     
-    describe 'パスワードの登録' do
-      describe 'パスワードの文字数' do
-        context 'パスワードが6文字の場合' do
-          it 'passwordは正しい' do
-            @user.password = @user.password_confirmation = 'a' * 6
-            expect(@user).to be_valid 
-          end
-        end
-      
-        context 'パスワードが15文字の場合' do
-          it 'passwordは正しい' do
-            @user.password = @user.password_confirmation = 'a' * 15
-            expect(@user).to be_valid
-          end
-        end
-      
-        context 'パスワードが5文字の場合' do
-          it 'passwordのバリデーションが正常に機能する' do
-            @user.password = @user.password_confirmation = 'a' * 5
-            expect(@user).not_to be_valid
-          end
-        end
-      
-        context 'パスワードが16文字の場合' do
-          it 'passwordのバリデーションが正常に機能する' do
-            @user.password = @user.password_confirmation = 'a' * 16
-            expect(@user).not_to be_valid
-          end
-        end
-      end
-    
-      context 'パスワードと再確認パスワードが15文字以内で空白がない場合' do
-        it 'passwordは登録可能' do
-          @user.password = @user.password_confirmation = 'a' * 15
+    describe 'パスワードの文字数' do
+      context 'パスワードが7文字の場合' do
+        it 'passwordは正しい' do
+          @user.password = @user.password_confirmation = 'a' * 7
           expect(@user).to be_valid
         end
       end
-    
-      context 'パスワードと再確認パスワードが15文字以内で空白である場合' do
-        it 'passwordのバリデーションが正常に機能する' do    
-          @user.password = @user.password_confirmation = '' * 15
+      
+      context 'パスワードが6文字の場合' do
+        it 'passwordのバリデーションが正常に機能する' do
+          @user.password = @user.password_confirmation = 'a' * 6
           expect(@user).not_to be_valid
         end
       end

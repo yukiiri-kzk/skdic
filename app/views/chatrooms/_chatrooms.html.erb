@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="row">
     <div class="col">
 
@@ -9,31 +9,24 @@
             <div class="d-flex align-items-center position-relative">
               <div><%= image_tag chatroom.item.image.url, size: "100x100" if chatroom.item.image? %></div>
               
-              <div class="ml-3" style="width: 10%;">
+              <div class="col-3 col-sm-2 ml-3">
                 <div class="text-truncate"><%= chatroom.item.name %></div>
                 <div><%= link_to '詳細を見る', item_path(chatroom.item), class: "small" %></div>
-                <div class="small text-truncate">出品者：<%= link_to chatroom.exhibitor.name, profile_show_user_path(chatroom.exhibitor_id) %></div>
-                <div class="small text-truncate">受取人：<%= link_to chatroom.wanter.name, profile_show_user_path(chatroom.wanter_id) %></div>
+                <div class="small">出品者：<%= link_to chatroom.exhibitor.name, profile_show_user_path(chatroom.exhibitor_id) %></div>
+                <div class="small">受取人：<%= link_to chatroom.wanter.name, profile_show_user_path(chatroom.wanter_id) %></div>
               </div>
      
               <div class="ml-3 position-absolute" style="bottom: 0;right: 0;">
                 <%= link_to chatroom_path(chatroom.id) do %>
-                  <i class="far fa-comment-dots h2 text-secondary"></i>
+                  <i class="far fa-comment-dots h3 text-secondary"></i>
                 <% end %>
               </div>
-            
-              <% unless chatroom.item.done == nil %>
-                <div class="text-nowrap px-1 rounded border border-danger text-danger position-absolute" style="top: 0;right: 0;">
-                  <%= chatroom.item.done %>
-                </div>
-              <% end %>
             </div>
           </li>
         </ul>
       <% end %>
- 
-      <%= paginate chatrooms %>
-  
     </div>
   </div>
-</div>
+
+
+<%= paginate chatrooms %>

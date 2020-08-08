@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    
     if @user.update(user_params)
       flash[:success] = '本人情報が変更されました。'
       redirect_to @user
@@ -52,7 +51,6 @@ class UsersController < ApplicationController
   end
   
   def profile_update
-
     if @user.update(user_params)
       flash[:success] = 'プロフィールを変更しました。'
       redirect_to profile_show_user_url(@user)

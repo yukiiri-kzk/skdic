@@ -1,87 +1,79 @@
 <% if logged_in? %>  
-  <div class="container">
-    <div class="row">
-      <div class="offset-sm-2 col-sm-8 p-3 mb-5 border">
-        <%= form_with url: root_path, method: :get, local: true do |f| %>
-          <div class="form-group">
-            <%= f.label :name, 'アイテム名' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
+  <div class="row">
+    <div class="offset-sm-2 col col-sm-8 p-3 mb-5 border">
+      <%= form_with url: root_path, method: :get, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :name, 'アイテム名' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
       
-          <div class="form-group">
-            <%= f.label :category_id, 'カテゴリー' %>
-            <%= f.select :category_id, Category.all.map{ |category| [category.name, category.id]}, { include_blank: true, selected: 0 }, {class: "form-control"} %>
-          </div>
+        <div class="form-group">
+          <%= f.label :category_id, 'カテゴリー' %>
+          <%= f.select :category_id, Category.all.map{ |category| [category.name, category.id]}, { include_blank: true, selected: 0 }, {class: "form-control"} %>
+        </div>
       
-          <div class="form-group">
-            <%= f.label :area_id, 'キャンパス' %>
-            <%= f.select :area_id, Area.all.map{ |area| [area.name, area.id]}, { include_blank: true, selected: 0 }, {class: "form-control"} %>
-          </div>
-    
-          <div class="d-flex justify-content-center">
-            <%= f.submit "検索" %>
-          </div>
-        <% end %>
-      </div>
-    
-      <% @items.each do |item| %>
-        <ul class="col-lg-3 list-group mb-3">
-          <li class="list-group-item shadow" style="width: auto;">
-            
-            <div class="mx-auto" style="width: 150px;">
-              <div><%= image_tag item.image.url, size: "150x150" if item.image? %></div>
-              <p class="mt-1 mb-1 text-truncate"><%= item.name %></p>
-              <p class="mb-1 small"><%= item.area.name %></p>
-              <%= link_to '詳細を見る', item_path(item), class: "small" %>
+        <div class="form-group">
+          <%= f.label :area_id, 'キャンパス' %>
+          <%= f.select :area_id, Area.all.map{ |area| [area.name, area.id]}, { include_blank: true, selected: 0 }, {class: "form-control"} %>
+        </div>
         
-              <div class="d-flex">
-                <% unless item.done == nil %>
-                  <div class="d-flex  mt-2 px-1 rounded border border-danger text-danger">
-                    <%= item.done %>
-                  </div>
-                <% else %>
-                  <%= form_with model: Chatroom.new, local: true do |f| %>
-                    <%= f.hidden_field :exhibitor_id, value: item.user.id %>
-                    <%= f.hidden_field :wanter_id, value: @current_user %>
-                    <%= f.hidden_field :item_id, value: item.id %>
-                    <%= f.submit 'ルームを作成', class: 'mt-2 btn btn-primary btn-sm rounded-pill', style: "font-size: 0.7rem;"%>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <div class="d-flex justify-content-center">
+          <%= f.button type: "submit", class: "btn text-white", style: "background:#7fbfff;" do %>
+            <i class='fa fa-search'></i>検索
+          <% end %>
+        </div>
+
       <% end %>
     </div>
+    
+    <% @items.each do |item| %>
+      <ul class="col-lg-3 list-group mb-3">
+        <li class="list-group-item shadow" style="width: auto;">
+            
+          <div class="mx-auto" style="width: 150px;">
+            <div><%= image_tag item.image.url, size: "150x150" if item.image? %></div>
+            <p class="mt-1 mb-1 text-truncate"><%= item.name %></p>
+            <p class="mb-1 small"><%= item.area.name %></p>
+            <%= link_to '詳細を見る', item_path(item), class: "small" %>
+        
+            <div class="d-flex">
+              <% unless item.done == nil %>
+                <div class="d-flex  mt-2 px-1 rounded border border-danger text-danger">
+                  <%= item.done %>
+                </div>
+              <% else %>
+                <%= form_with model: Chatroom.new, local: true do |f| %>
+                  <%= f.hidden_field :exhibitor_id, value: item.user.id %>
+                  <%= f.hidden_field :wanter_id, value: @current_user %>
+                  <%= f.hidden_field :item_id, value: item.id %>
+                  <%= f.submit 'ルームを作成', class: 'mt-2 btn btn-primary btn-sm rounded-pill', style: "font-size: 0.7rem;"%>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% end %>
   </div>
     
   <%= paginate @items %>
   
 <% else %>
 
-  <div class="container">
-    <div class="row">
+  <div class="row">
+    <div class="col">
       
-      <div class="col">
-        <div class="center jumbotron">
-          <div class="text-center">
-            <h1>SKDIC へようこそ！</h1>
-            <p class="mt-5">
-              SKDICは島根県立大学生専用のマッチングサービスです。<br>
-              主に卒業の際に出た不要品を他の学生に譲るときに役立ててほしいと思い、制作しました。
-            </p>
-          </div>
+      <div class="center jumbotron">
+        <div class="text-center">
+          
+          <h1>SKDIC へようこそ！</h1>
+          <p class="mt-5 text">
+            SKDICは島根県立大学生専用のアイテムマッチングサービスです。<br>
+            不要品を他の学生に譲りたいときに使えるサービスです！
+          </p>
+          
         </div>
       </div>
     </div>
   </div>
 <% end %>
-
-  
-    
-  
-
-
-
-    
-

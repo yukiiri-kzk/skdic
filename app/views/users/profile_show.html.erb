@@ -6,7 +6,7 @@
       <%  if @user.image? %>
         <%= image_tag @user.image.url, class: "rounded-circle", size: "250x250" %>
       <% else%>
-        <%= image_tag "default.png", class: "rounded-circle", size: "250x250" %>
+        <img class="mr-2 rounded-circle" src="<%= gravatar_url(@user, { size: 250 }) %>" alt="">
       <% end %>
     </div>
     <p class="h3 mt-3 mb-5 text-center"><%= @user.name %></p>
@@ -18,8 +18,10 @@
       </div>
     </div>
     
-    <% if current_user.id == @user.id %>    
-      <%= link_to "編集する", profile_edit_user_path(@user), class: "offset-sm-5 mb-3 btn btn-outline-primary rounded-pill" %>
+    <% if current_user.id == @user.id %>
+      <div class="d-flex justify-content-center">
+        <%= link_to "編集する", profile_edit_user_path(@user), class: "mb-3 btn btn-outline-primary rounded-pill" %>
+      </div>
     <% end %>
     
   </div>
