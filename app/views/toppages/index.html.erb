@@ -1,6 +1,6 @@
 <% if logged_in? %>  
   <div class="row">
-    <div class="offset-sm-2 col col-sm-8 p-3 mb-5 border">
+    <div class="offset-1 offset-sm-2 col-10 col-sm-8 p-3 mb-5 border">
       <%= form_with url: root_path, method: :get, local: true do |f| %>
         <div class="form-group">
           <%= f.label :name, 'アイテム名' %>
@@ -18,7 +18,7 @@
         </div>
         
         <div class="d-flex justify-content-center">
-          <%= f.button type: "submit", class: "btn text-white", style: "background:#7fbfff;" do %>
+          <%= f.button type: "submit", class: "btn text-white", style: "background:#5fbcff;" do %>
             <i class='fa fa-search'></i>検索
           <% end %>
         </div>
@@ -27,7 +27,7 @@
     </div>
     
     <% @items.each do |item| %>
-      <ul class="col-lg-3 list-group mb-3">
+      <ul class="offset-1 offset-lg-0 col-10 col-lg-3 list-group mb-3">
         <li class="list-group-item shadow" style="width: auto;">
             
           <div class="mx-auto" style="width: 150px;">
