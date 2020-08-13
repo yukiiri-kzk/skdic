@@ -20,8 +20,7 @@
             </li>
             <li class="nav-item"><%= link_to "アイテム登録", new_item_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to "出品アイテム", items_path(current_user), class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to "出品ルーム", chatrooms_path(current_user), class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to "受取ルーム", other_chatrooms_path(current_user), class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "ルーム一覧", chatrooms_path(current_user), class: 'nav-link' %></li>
             <li><%= link_to "ログアウト", logout_path(current_user), method: :delete, class: "ml-sm-5 btn btn-outline-primary" %></li>
           </ul>
         </div>

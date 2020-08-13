@@ -1,3 +1,11 @@
-<h2 class="my-5">出品ルーム一覧</h2>
+<h2 class="mb-5">ルーム一覧</h2>
 
-<%= render 'chatrooms', chatrooms: @chatrooms %>
+<div class="row">
+  <div class="col mb-5">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item"><a href="<%= chatrooms_path %>" class="nav-link <%= 'active' if current_page?(chatrooms_path) %>">出品ルーム</a></li>
+      <li class="nav-item"><a href="<%= other_chatrooms_path %>" class="nav-link">受取ルーム</a></li>
+    </ul>
+    <%= render 'chatrooms', chatrooms: @chatrooms %>
+  </div>
+</div>
